@@ -2,14 +2,16 @@
   "name": "forum",
   "version": "1.0.0",
   "description": "A sample Forum application using Node.js and NoSQL",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
   },
   "author": "Karthik K",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "hbs": "^4.0.1",
     "mongoose": "^5.4.0"
   }
 }
