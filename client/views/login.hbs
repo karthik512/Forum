@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Forum</title>
+        <title>Forum - Login</title>
 
         <link href="client/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     </head>
@@ -13,38 +13,22 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center">Sign In</h5>
-                            <form class="form-signin">
+                            <form class="form-signin" id="login-form">
                                 <div class="form-label-group mb-3">
-                                    <label for="inputEmail">Email ID</label>
-                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email ID" required autofocus>
+                                    <label for="user-mail">Email ID</label>
+                                    <input type="email" id="user-mail" name="user-mail" class="form-control" placeholder="Email ID" required autofocus>
                                 </div>
                                 <div class="form-label-group mb-3">
-                                    <label for="inputPassword">Password</label>
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>                                    
+                                    <label for="user-password">Password</label>
+                                    <input type="password" id="user-password" name="user-password" class="form-control" placeholder="Password" required>                                    
                                 </div>
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase mb-5" type="button">Sign in</button>
+                                <a class="float-right" href="/register">New User?</a>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>        
-        {{!-- <div class="container">
-            <div class="login-form">
-                <div class="main-div">
-                    <form>
-                        <div class="form-group">
-                            <label for="email">Email ID: </label>
-                            <input type="text" autocomplete="off" autofocus class="form-control" id="email" placeholder="Enter your email id">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password: </label>
-                            <input type="password" class="form-control" autocomplete="off" id="password" placeholder="Enter your password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div> --}}
     </body>
 </html>

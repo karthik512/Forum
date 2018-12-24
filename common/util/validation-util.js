@@ -12,4 +12,14 @@
         return false;
     }
 
-})(typeof exports === undefined? this['ValidationUtil'] = {}: exports)
+    exports.isValidPassword = function(password) {
+        console.log(password.length);
+        if(exports.isNullOrEmpty(password)) {
+            return false;
+        } else if(password.length < 6 || password.length > 10) {
+            return false;
+        }
+        return true;
+    }
+
+})((typeof exports == undefined || typeof exports == 'undefined')? this['ValidationUtil'] = {}: exports)

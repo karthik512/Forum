@@ -1,0 +1,43 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Forum - Register</title>
+
+        <link href="client/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+        <script src="/common/log.js" type="text/javascript"></script>
+        <script src="/common/util/validation-util.js" type="text/javascript"></script>
+        <script src="/client/js/util/ClientUtil.js" type="text/javascript"></script>
+        <script src="/client/js/User.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div class="card card-signin my-5">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Register</h5>
+                            <form class="form-signin" id="user-register-form">
+                                <div class="form-label-group mb-3">
+                                    <label for="user-mail">Email ID</label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="Email ID" autocomplete="off" required autofocus>
+                                </div>
+                                <div class="form-label-group mb-3">
+                                    <label for="user-password">Password</label>
+                                    <input type="password" id="password" name="password" autocomplete="off" class="form-control" placeholder="Password" required>
+                                </div>
+                                <div class="form-label-group mb-3">
+                                    <label for="user-confim-password">Confirm Password</label>
+                                    <input type="password" id="confirm-password" name="confirm-password" autocomplete="off" class="form-control" placeholder="Confirm Password" required>
+                                </div>                                
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase mb-5" id="user-register-btn" onclick="registerUser();" type="button">Register</button>
+                                <a class="float-right" href="/login">Existing User?</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </body>
+</html>

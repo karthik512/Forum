@@ -16,4 +16,4 @@
         console.log(`[${new Date()}] [FINE] [${message}]`);
     }
 
-})(typeof exports === undefined ? this['Logger'] = {} : exports);
+})((typeof exports == undefined || typeof exports == 'undefined') ? this['Logger'] = {} : exports);

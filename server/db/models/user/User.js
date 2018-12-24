@@ -1,6 +1,7 @@
-let {mongoose} = require(process.cwd() + '/server/db/mongoose');
-let {ValidationUtil} = require(process.cwd() + '/common/util/validation-util');
+const bcrypt = require('bcrypt');
 
+const {mongoose} = require(process.cwd() + '/server/db/mongoose');
+const ValidationUtil = require(process.cwd() + '/common/util/validation-util');
 
 let UserSchema = new mongoose.Schema({
     email: {
@@ -8,10 +9,10 @@ let UserSchema = new mongoose.Schema({
         required: true,
         trim: true,
         unique: true,
-        validate: {
-            validator: ValidationUtil.isValidEmail,
-            message: `{VALUE} is not a valid email`
-        }
+        // validate: {
+        //     validator: ValidationUtil.isValidEmail,
+        //     message: `{VALUE} is not a valid email`
+        // }
     },
     password: {
         type: String,
@@ -45,6 +46,19 @@ let UserSchema = new mongoose.Schema({
     }
 });
 
-let User = mongoose.model('User', UserSchema);
+UserSchema.pre('save', function(next) {
+    var user = this;
+
+    if(user.isModified('password')) {
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(user.password, salt, (err, hash) => {
+                user.password = hash;
+                next();
+            });
+        });
+    } else { next(); }
+});
+
+let User = mongoose.model('Users', UserSchema);
 
 module.exports = {User};
