@@ -15,7 +15,7 @@ module.exports = {
     authenticate: function(req, res) {
         let body = _.pick(req.body, ['email', 'password']);
 
-        User.findByMail(body.email).then((user) => {
+        User.findByCredentials(body.email).then((user) => {
             Logger.info(` User Authentication Success :: ${user}`);
             req.session.user = user;
             res.redirect('/posts');
