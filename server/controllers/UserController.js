@@ -18,8 +18,16 @@ module.exports = {
 
         user.save().then(() => {
             Logger.info(` User Created Successfully :: ${user}`);
+            res.render(process.cwd() + '/client/views/common/status.hbs',{
+                heading: 'Success',
+                message: `Successfully registered ${user.email}`
+            });
         }).catch((e) => {
             Logger.info(` User Creation Failed :: ${e}`);
+            res.render(process.cwd() + '/client/views/common/status.hbs', {
+                heading: 'Failure',
+                message: `Failed to register ${user.email}.`
+            })
         });
     }
 }

@@ -1,5 +1,4 @@
 **/node_modules
 **/config.json
 **/client/js/
-**/client/views/common/
 **/server/middleware/**
