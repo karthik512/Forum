@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const _ = require('lodash');
 
 const {mongoose} = require(process.cwd() + '/server/db/mongoose');
 const ValidationUtil = require(process.cwd() + '/common/util/validation-util');
@@ -45,6 +46,12 @@ let UserSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+UserSchema.methods.toObject = function() {
+    var user = this;
+    var userJSON = user.toJSON();
+    return _.omit(userJSON, ['password', 'tokens']);
+}
 
 UserSchema.pre('save', function(next) {
     var user = this;
