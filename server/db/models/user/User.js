@@ -53,6 +53,44 @@ UserSchema.methods.toObject = function() {
     return _.omit(userJSON, ['password', 'tokens']);
 }
 
+UserSchema.statics.findByMail = function(email) {
+    var User = this;
+
+    return User.findOne({email}).then((user) => {
+        if(!user) {
+            return Promise.reject({
+                error: 'User not found'
+            });
+        } else {
+            return Promise.resolve(user);
+        }
+    });
+}
+
+UserSchema.statics.findByCredentials = function(email, password) {
+    var User = this;
+
+    return User.findOne({email}).then((user) => {
+        if(!user) {
+            return Promise.reject({
+                error: 'User not found'
+            });
+        }
+
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(password, user.password, (err, res) => {
+                if(res) {
+                    resolve(user);
+                } else {
+                    reject({
+                        error: 'Incorrect Password'
+                    });
+                }
+            });
+        });
+    });
+}
+
 UserSchema.pre('save', function(next) {
     var user = this;
 

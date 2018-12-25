@@ -4,12 +4,25 @@ const Logger = require(process.cwd() + '/common/log');
 const {User} = require(process.cwd() + '/server/db/models/user/User');
 
 module.exports = {
-    login: function(req, res) {
+    showLogin: function(req, res) {
         res.render(process.cwd() + '/client/views/login.hbs');
     },
 
-    register: function(req, res) {
+    showRegister: function(req, res) {
         res.render(process.cwd() + '/client/views/register.hbs');
+    },
+
+    authenticate: function(req, res) {
+        let body = _.pick(req.body, ['email', 'password']);
+
+        User.findByMail(body.email).then((user) => {
+            Logger.info(` User Authentication Success :: ${user}`);
+            req.session.user = user;
+            res.redirect('/posts');
+        }).catch((e) => {
+            Logger.error(` User Authentication Failed :: ${JSON.stringify(e)}`);
+            res.render(process.cwd() + '/client/views/login.hbs', e);
+        });
     },
 
     addNewUser: function(req, res) {
