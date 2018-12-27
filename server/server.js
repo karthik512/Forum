@@ -1,7 +1,6 @@
 require(process.cwd() + '/server/config/config');
 
 const express = require('express');
-const hbs = require('hbs');
 const fs = require('fs');
 const mime = require('mime');
 const bodyParser = require('body-parser');
@@ -29,6 +28,13 @@ app.use(session({
         expires: 600000
     }
 }));
+
+app.use((req, res, next) => {
+    if(req.cookies.ForumSessionCookie && !req.session.user) {
+        res.clearCookie('ForumSessionCookie');
+    }
+    next();
+});
 
 app.get('*.(js|css)', (req, res) => {
     let pathName = req.path;

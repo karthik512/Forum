@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
 const Logger = require(process.cwd() + '/common/log');
-const {User} = require(process.cwd() + '/server/db/models/user/User');
+const { User } = require(process.cwd() + '/server/db/models/user/User');
 
 module.exports = {
     showLogin: function(req, res) {
@@ -15,9 +15,9 @@ module.exports = {
     authenticate: function(req, res) {
         let body = _.pick(req.body, ['email', 'password']);
 
-        User.findByCredentials(body.email).then((user) => {
-            Logger.info(` User Authentication Success :: ${user}`);
-            req.session.user = user;
+        User.findByCredentials(body.email, body.password).then((user) => {
+            Logger.info(` User Authentication Success :: ${JSON.stringify(user.toJSON())}`);
+            req.session.user = user.toJSON();
             res.redirect('/posts');
         }).catch((e) => {
             Logger.error(` User Authentication Failed :: ${JSON.stringify(e)}`);
