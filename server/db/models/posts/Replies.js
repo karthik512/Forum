@@ -1,12 +1,12 @@
-let {mongoose} = require(process.cwd() + '/server/db/mongoose');
+let { mongoose, MongooseSchema } = require(process.cwd() + '/server/db/mongoose');
 
-let ReplySchema = new mongoose.Schema({
+let ReplySchema = new MongooseSchema({
     user_id: {
-        type: ObjectId,
+        type: mongoose.Schema.ObjectId,
         required: true
     },
     thread_id: {
-        type: ObjectId,
+        type: mongoose.Schema.ObjectId,
         required: true
     },
     content: {
@@ -15,7 +15,7 @@ let ReplySchema = new mongoose.Schema({
     },
     comments: [{
         user_id: {
-            type: ObjectId,
+            type: mongoose.Schema.ObjectId,
             required: true
         },
         content: {
@@ -52,6 +52,6 @@ let ReplySchema = new mongoose.Schema({
     }
 });
 
-let Reply = mongoose.model('Thread', ReplySchema);
+let Reply = mongoose.model('Reply', ReplySchema);
 
 module.exports = {Reply};

@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 
-const {mongoose} = require(process.cwd() + '/server/db/mongoose');
+const { mongoose, MongooseSchema } = require(process.cwd() + '/server/db/mongoose');
 const ValidationUtil = require(process.cwd() + '/common/util/validation-util');
 
-let UserSchema = new mongoose.Schema({
+let UserSchema = new MongooseSchema({
     email: {
         type: String,
         required: true,
@@ -47,10 +47,10 @@ let UserSchema = new mongoose.Schema({
     }
 });
 
-UserSchema.methods.toObject = function() {
+UserSchema.methods.toJSON = function() {
     var user = this;
-    var userJSON = user.toJSON();
-    return _.omit(userJSON, ['password', 'tokens']);
+    var userObj = user.toObject();
+    return _.omit(userObj, ['password', 'tokens']);
 }
 
 UserSchema.statics.findByMail = function(email) {
@@ -69,7 +69,6 @@ UserSchema.statics.findByMail = function(email) {
 
 UserSchema.statics.findByCredentials = function(email, password) {
     var User = this;
-
     return User.findOne({email}).then((user) => {
         if(!user) {
             return Promise.reject({

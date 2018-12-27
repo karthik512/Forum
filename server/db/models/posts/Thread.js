@@ -1,8 +1,8 @@
-let {mongoose} = require(process.cwd() + '/server/db/mongoose');
+let { mongoose, MongooseSchema } = require(process.cwd() + '/server/db/mongoose');
 
-let ThreadSchema = new mongoose.Schema({
+let ThreadSchema = new MongooseSchema({
     user_id: {
-        type: ObjectId,
+        type: mongoose.Schema.ObjectId,
         required: true
     },
     subject: {
@@ -17,7 +17,7 @@ let ThreadSchema = new mongoose.Schema({
     },
     comments: [{
         user_id: {
-            type: ObjectId,
+            type: mongoose.Schema.ObjectId,
             required: true
         },
         content: {
