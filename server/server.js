@@ -6,11 +6,14 @@ const mime = require('mime');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const hbs = require('hbs');
 
 const routes = require('./routes');
 const Logger = require(process.cwd() + '/common/log');
 
 let app = new express();
+
+hbs.registerPartials(process.cwd() + '/client/views/partials');
 
 //Use body-parser to parse parameters from req object...
 app.use(bodyParser.urlencoded());
