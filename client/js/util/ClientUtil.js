@@ -21,3 +21,8 @@ function isEqual(str1, str2, doTrim)
 function showAlert(message) {
     alert(message);
 }
+
+function redirect(path)
+{
+    window.location.href = path;
+}

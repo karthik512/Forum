@@ -1,0 +1,21 @@
+<div class="mt-75 ml-25 w-55p">
+    <form id="NewThreadForm">
+        {{#if error}}
+            <div class="text-white bg-danger mb-3 text-center p-1">{{error}}</div>
+        {{/if}}
+        {{#if (equals showTitle true) }}
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" class="form-control" value="{{title}}">
+            </div>
+        {{/if}}
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" rows="15" id="description" name="description">{{description}}</textarea>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-success" id="Submit" onclick="onSubmitThread();">Submit</button>
+            <button type="button" class="btn ml-3" id="Cancel" onclick="redirect('/posts');">Cancel</button>
+        </div>
+    </form>
+</div>

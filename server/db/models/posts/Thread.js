@@ -36,7 +36,7 @@ let ThreadSchema = new MongooseSchema({
     }],
     keywords: {
         type: Array,
-        required: true
+        required: false
     },
     meta: [{
         upvotes: {

@@ -18,5 +18,6 @@ router.route('/user/logout').get(sessionChecker, userController.logout);
 //Posts - Threads
 router.route('/posts').get(sessionChecker, postsController.showPosts);
 router.route('/posts/new').get(sessionChecker, postsController.newPost);
+router.route('/posts/new').post(sessionChecker, postsController.addNewThread);
 
 module.exports = router;

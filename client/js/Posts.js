@@ -1,9 +1,26 @@
-function onHomeClicked()
+function onSubmitThread()
 {
-    window.location.href = '/posts';
+    if(validateNewThread()) {
+        docid('NewThreadForm').method = 'POST';
+        docid('NewThreadForm').action = window.location.pathname;
+        docid('NewThreadForm').submit();
+    }
 }
 
-function onNewThreadClicked()
+function validateNewThread()
 {
-    window.location.href= '/posts/new';
+    let title = docid('title').value;
+    let content = docid('description').value;
+
+    if(ValidationUtil.isNullOrEmpty(title)) {
+        alert('Please enter the title');
+        return false;
+    }
+
+    if(ValidationUtil.isNullOrEmpty(content)) {
+        alert('Please enter the description');
+        return false;
+    }
+
+    return true;
 }
