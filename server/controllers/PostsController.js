@@ -12,7 +12,19 @@ module.exports = {
         Logger.info(` User :: ${JSON.stringify(user)} - UserName :: ${userName}`);
         res.render(process.cwd() + '/client/views/home.hbs', { 
             userName,
-            points: user.points
+            points: user.points,
+            mainPage: 'posts/viewposts'
         });
+    },
+
+    newPost: function(req, res) {
+        Logger.info(' newPost Called ');
+        let user = req.session.user;
+        let userName = user.email.split('@')[0];
+        res.render(process.cwd() + '/client/views/home.hbs', {
+            userName,
+            points: user.points,
+            mainPage: 'posts/newpost'
+        })
     }
 }

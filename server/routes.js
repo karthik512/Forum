@@ -13,8 +13,10 @@ router.route('/register').get(nonSessionChecker, userController.showRegister);
 //Users
 router.route('/user').post(nonSessionChecker, userController.addNewUser);
 router.route('/user/login').post(nonSessionChecker, userController.authenticate);
+router.route('/user/logout').get(sessionChecker, userController.logout);
 
 //Posts - Threads
 router.route('/posts').get(sessionChecker, postsController.showPosts);
+router.route('/posts/new').get(sessionChecker, postsController.newPost);
 
 module.exports = router;

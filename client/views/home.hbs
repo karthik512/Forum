@@ -9,13 +9,14 @@
 
         <script src="/common/log.js" type="text/javascript"></script>
         <script src="/common/util/validation-util.js" type="text/javascript"></script>
+        <script src="/client/js/util/ClientUtil.js" type="text/javascript"></script>
         <script src="/client/js/Posts.js" type="text/javascript"></script>
     </head>
     <body>
         {{> navbar}}
         <div class="row h-100p">
             {{> lhs}}
-            <p>Home Page</p>
+            {{> (lookup . 'mainPage') }}
         </div>
     </body>
 </html>

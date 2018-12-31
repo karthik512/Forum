@@ -3,10 +3,10 @@
         <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
             <small>MAIN MENU</small>
         </li>
-        <li class="list-group-item selected sidebar-separator-title d-flex align-items-center menu-collapsed">
+        <li class="list-group-item {{isSelected mainPage 'home'}} sidebar-separator-title d-flex align-items-center menu-collapsed" id="HomeListItem" onclick="onHomeClicked();">
             <small>Home</small>
         </li>
-        <li class="list-group-item sidebar-separator-title d-flex align-items-center menu-collapsed">
+        <li class="list-group-item {{isSelected mainPage 'newThread'}} sidebar-separator-title d-flex align-items-center menu-collapsed" id="NewThreadListItem" onclick="onNewThreadClicked();">
             <small>Create a New Thread</small>
         </li>
     </ul>

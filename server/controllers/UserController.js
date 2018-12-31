@@ -25,6 +25,15 @@ module.exports = {
         });
     },
 
+    logout: function(req, res) {
+        if(req.session.user && req.cookies.ForumSessionCookie) {
+            res.clearCookie('ForumSessionCookie');
+            res.redirect('/');
+        } else {
+            res.redirect('/');
+        }
+    },
+
     addNewUser: function(req, res) {
         let body = _.pick(req.body, ['email', 'password']);
         let user = new User(body);

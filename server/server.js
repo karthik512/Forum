@@ -15,6 +15,22 @@ let app = new express();
 
 hbs.registerPartials(process.cwd() + '/client/views/partials');
 
+hbs.registerHelper('equals', (a, b) => {
+    if(a == b) {
+        return true;
+    }
+    return false;
+});
+
+hbs.registerHelper('isSelected', (pagePath, tabName) => {
+    if(pagePath == 'posts/viewposts' && tabName == 'home') {
+        return 'selected';
+    } else if(pagePath == 'posts/newpost' && tabName == 'newThread') {
+        return 'selected';
+    }
+    return '';
+});
+
 //Use body-parser to parse parameters from req object...
 app.use(bodyParser.urlencoded());
 
